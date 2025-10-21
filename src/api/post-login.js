@@ -1,5 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 async function postLogin(username, password) {
     const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
     const response = await fetch(url, {
@@ -35,7 +33,7 @@ async function postLogin(username, password) {
 
     const data = await response.json();
 
-    await AsyncStorage.setItem('token', data.token);
+    localStorage.setItem('token', data.token);
 
     return data;
 

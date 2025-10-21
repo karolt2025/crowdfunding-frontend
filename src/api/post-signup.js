@@ -16,7 +16,7 @@ async function postSignup(username, password) {
         }),
     });
 
-    if (!signupResponse.ok) {
+    if (!response.ok) {
         const fallbackError = `Error trying to signup`;
 
         const data = await response.json().catch(() => {
@@ -62,6 +62,6 @@ async function postSignup(username, password) {
 
 
 
-return await response.json();
+// return await response.json();
 
 export default postSignup;
