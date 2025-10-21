@@ -20,7 +20,7 @@ function NavBar() {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/fundraiser">Fundraiser</Link>
+                        <Link to="/fundraiser">Fundraisers</Link>
                     </li>
                     <li>
                         {auth.token ? (
