@@ -4,8 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "./pages/HomePage.jsx";
 import FundraiserPage from "./pages/FundraiserPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import SignupPage from "./pages/SignupPage.jsx";
 
 import NavBar from "./components/NavBar.jsx";
+import { AuthProvider } from "./components/AuthProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,14 +16,18 @@ const router = createBrowserRouter([
     element: <NavBar />,
     children: [
       { path: "/", element: <HomePage /> },
+      { path: "/login", element: <LoginPage /> },
       { path: "/fundraiser", element: <FundraiserPage /> },
+      { path: "/users", element: <SignupPage /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* Here we wrap our app in the router provider so they render */}
-    <RouterProvider router={router} />
+    <AuthProvider>
+      {/* Here we wrap our app in the router provider so they render */}
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
