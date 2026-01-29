@@ -9,7 +9,7 @@ function HomePage() {
     return (
         <div id="fundraiser-list">
             {fundraisers.map((fundraiserData, key) => {
-                return <FundraiserCard key={key} fundraiserData={fundraiserData} />;
+                return <FundraiserCard key={fundraiserData.id} fundraiserData={fundraiserData} />;
             })}
         </div>
     );

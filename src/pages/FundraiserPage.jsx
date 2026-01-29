@@ -1,6 +1,7 @@
 import { oneFundraiser } from "../data";
 
 function FundraiserPage() {
+    
     return (
         <div>
             <h2>{oneFundraiser.title}</h2>

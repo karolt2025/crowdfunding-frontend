@@ -1,40 +1,36 @@
-// async function postLogin(username, password) {
-//     const token = window.localStorage.getItem("token");
-    
-//     const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
-//     const response = await fetch(url, {
-//         method: "POST", // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
-//         headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Token ${token}`,
-//         },
-//         body: JSON.stringify({
-//             YOUR_DATA:
-//             // add YOUR DATA here (compare against post-logins)
-//         }),
-//         // method: "POST"
-//         // method: "PUT"
-//         // headers: {
-//         //     "Content-Type": "application/json",
-//         // },
-//         // body: JSON.stringify({
-//         //     "username": username,
-//         //     "password": password,
-//         // }),
-//     });
+async function postFundraiser(username, password) {
+    const token = window.localStorage.getItem("token");
 
-//     if (!response.ok) {
-//         const fallbackError = `Error trying to login`;
+    if (!token) {
+        throw new Error("No authentication token found. Please log in first.");
+    }
 
-//         const data = await response.json().catch(() => {
-//             throw new Error(fallbackError);
-//         });
+    const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
 
-//         const errorMessage = data?.detail ?? fallbackError;
-//         throw new Error(errorMessage);
-//     }
+    const response = await fetch(url, {
+        method: "POST", // We need to tell the server that we are sending JSON data so we set the Content-Type header to application/json
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+        },
+        body: JSON.stringify({
+            ...fundraiserData,
+            date_created: new Date().toISOString(),
+        }),
+    });
 
-//     return await response.json();
-// }
+    if (!response.ok) {
+        const fallbackError = `Error trying to login`;
 
-// export default postLogin;
+        const data = await response.json().catch(() => {
+            throw new Error(fallbackError);
+        });
+
+        const errorMessage = data?.detail ?? fallbackError;
+        throw new Error(errorMessage);
+    }
+
+    return await response.json();
+}
+
+export default postFundraiser;

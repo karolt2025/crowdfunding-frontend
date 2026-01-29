@@ -5,6 +5,7 @@ function FundraiserCard(props) {
     const { fundraiserData } = props;
 
     return (
+
         <div className="fundraiser-card">
             <Link to="/fundraiser">
                 <img src={fundraiserData.image} />
@@ -14,4 +15,4 @@ function FundraiserCard(props) {
     );
 }
 
-export default FundraiserCard;
+            export default FundraiserCard;
